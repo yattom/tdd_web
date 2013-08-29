@@ -1,11 +1,75 @@
 apply plugin: 'java'
-apply plugin: 'jetty'
+apply plugin: 'groovy'
+apply plugin: 'war'
+apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
 
+
+sourceCompatibility = 1.7
 repositories.mavenCentral()
 
 dependencies {
+  providedCompile group:'javax.servlet', name:'javax.servlet-api', version:'3.0.1'
   providedCompile 'com.sun.jersey:jersey-bundle:1.17.1'
   providedCompile 'asm:asm:3.1'
+
+  compile localGroovy()
+  compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+  testCompile group: 'junit', name: 'junit', version: '4.+'
+  testCompile group:'org.codehaus.geb', name: 'geb-core', version: '0.7.2'
+  testCompile group:'org.gebish', name: 'geb-junit4', version: '0.9.0'
+  testCompile group:'org.seleniumhq.selenium', name: 'selenium-firefox-driver', version: '2.32.0'
+  testCompile group:'org.seleniumhq.selenium', name: 'selenium-htmlunit-driver', version: '2.32.0'
+}
+
+test {
+  exclude 'it/*.*'
+}
+
+task integrationTest(type: Test, dependsOn: build) {
+    include 'it/*IntegrationTest.*'
+    testReportDir = reporting.file("htmlunit/integrationTests")
+    testResultsDir = file("$buildDir/test-results/htmlunit/integrationTests")
+    systemProperty "geb.build.reportsDir", reporting.file("htmlunit/geb")
+    systemProperties 'geb.driver': 'firefox'
+
+    doFirst {
+        jettyStart.execute()
+    }
+
+    doLast {
+        jettyStop.execute()
+    }
+}
+configurations { jetty9 }
+
+dependencies.jetty9 'org.eclipse.jetty:jetty-ant:9.0.2.v20130417'
+
+ant {
+    taskdef(name: 'jettyRun', classname: 'org.eclipse.jetty.ant.JettyRunTask', classpath: configurations.jetty9.asPath)
+    taskdef(name: 'jettyStop', classname: 'org.eclipse.jetty.ant.JettyStopTask', classpath: configurations.jetty9.asPath)
+}
+
+project.ext {
+    contextPath = '/bare-eclipse-web'
+    port = 8080
+    stopPort = stopKey = 9999
+}
+
+task jettyRunWar(dependsOn: war) << {
+    ant.jettyRun(jettyPort: project.ext.port) {
+        webApp(war: war.archivePath, contextPath: project.ext.contextPath)
+    }
+}
+
+task jettyStart(dependsOn: war) << {
+    ant.jettyRun(daemon: true, jettyPort: project.ext.port, stopPort: project.ext.stopPort, stopKey: project.ext.stopKey) {
+        webApp(war: war.archivePath, contextPath: project.ext.contextPath)
+    }
+}
+
+task jettyStop << {
+    ant.jettyStop(stopWait: 1, stopPort: project.ext.stopPort, stopKey: project.ext.stopKey)
 }
 
 task wrapper(type: Wrapper) {
