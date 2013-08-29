@@ -52,7 +52,7 @@ ant {
 
 project.ext {
     contextPath = '/bare-eclipse-web'
-    port = 8080
+    port = 8999
     stopPort = stopKey = 9999
 }
 
