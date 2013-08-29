@@ -1,3 +1,3 @@
 <html>
-<body>Hello Jsp!</body>
+<body>Hello JSP!</body>
 </html>
