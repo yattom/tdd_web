@@ -20,6 +20,12 @@ dependencies {
   testCompile group:'org.gebish', name: 'geb-junit4', version: '0.9.0'
   testCompile group:'org.seleniumhq.selenium', name: 'selenium-firefox-driver', version: '2.32.0'
   testCompile group:'org.seleniumhq.selenium', name: 'selenium-htmlunit-driver', version: '2.32.0'
+
+  runtime group:'org.eclipse.jetty', name:'jetty-server', version:'9.0.5.v20130815'
+  runtime group:'org.eclipse.jetty', name:'jetty-webapp', version:'9.0.5.v20130815'
+  runtime group:'org.eclipse.jetty', name:'jetty-jsp-2.1', version:'9.0.5.v20130815'
+  runtime group:'org.mortbay.jetty', name:'jsp-2.1-glassfish', version:'9.0.5.v20130815'
+
 }
 
 test {
