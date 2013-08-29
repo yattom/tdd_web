@@ -23,8 +23,7 @@ dependencies {
 
   runtime group:'org.eclipse.jetty', name:'jetty-server', version:'9.0.5.v20130815'
   runtime group:'org.eclipse.jetty', name:'jetty-webapp', version:'9.0.5.v20130815'
-  runtime group:'org.eclipse.jetty', name:'jetty-jsp-2.1', version:'9.0.5.v20130815'
-  runtime group:'org.mortbay.jetty', name:'jsp-2.1-glassfish', version:'9.0.5.v20130815'
+  runtime group:'org.eclipse.jetty', name:'jetty-jsp', version:'9.0.5.v20130815'
 
 }
 
@@ -49,7 +48,7 @@ task integrationTest(type: Test, dependsOn: build) {
 }
 configurations { jetty9 }
 
-dependencies.jetty9 'org.eclipse.jetty:jetty-ant:9.0.2.v20130417'
+dependencies.jetty9 'org.eclipse.jetty:jetty-ant:9.0.5.v20130815'
 
 ant {
     taskdef(name: 'jettyRun', classname: 'org.eclipse.jetty.ant.JettyRunTask', classpath: configurations.jetty9.asPath)
