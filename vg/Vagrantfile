@@ -29,6 +29,12 @@ Vagrant.configure("2") do |config|
     # （備考: AWSプラグイン用のダミーBoxです。）
     amazonlinux_on_aws.vm.box = "dummy"
     amazonlinux_on_aws.vm.box_url = "https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box"
+
+    amazonlinux_on_aws.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = "cookbooks"
+      chef.run_list = "recipe[dummy]"
+    end
+
   end
 end
 

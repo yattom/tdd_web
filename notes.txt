@@ -12,4 +12,6 @@ mkdir -p '/vagrant'
 なんとなく後で困りそうなので、 https://github.com/mitchellh/vagrant/issues/1482 を参考にして、ptyでsudoできるよう設定した。不要なのかもしれないけれど。
 あとは、AWSに登録したキーペアの名前と、ローカルのキーペアのファイル名が微妙に不一致で(ただの手違いなんだけど、しばらく触ってなかったので忘れてた)、Vagrantfile内のaws.keypair_nameとoverride.ssh.private_key_pathが食い違ってしまい動かない、という事態でちょっとハマった。
 
+chefのことがどうもよくわからない。ひとまず、 http://dev.classmethod.jp/tool/vagrant-chef/ の最初の例をマネして動くかどうか試してみる。
+あと、vagrant upがWindows7からだと動かない(rsyncが実行できないと言われる)ので、crafttableに引っ越してみる。
 
