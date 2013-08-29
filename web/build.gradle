@@ -51,7 +51,7 @@ ant {
 }
 
 project.ext {
-    contextPath = '/bare-eclipse-web'
+    contextPath = '/tdd_todo'
     port = 8999
     stopPort = stopKey = 9999
 }
