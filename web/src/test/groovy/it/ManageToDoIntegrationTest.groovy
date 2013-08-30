@@ -13,10 +13,10 @@ class ManageToDoIntegrationTest extends GebReportingTest {
   void "入力したToDoが表示できること"() {
     to NewPage
     at NewPage
-//    form.with {
-//        todoTile = "朝食"
-//    }
-//    $('input', type: 'submit').click()
+    form.with {
+        todoTile = "朝食"
+    }
+    $('input', type: 'submit').click()
 //    
 //    at IndexPage
 //    assert todo == '朝食'
