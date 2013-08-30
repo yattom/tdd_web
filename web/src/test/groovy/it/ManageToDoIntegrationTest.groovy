@@ -14,11 +14,11 @@ class ManageToDoIntegrationTest extends GebReportingTest {
     to NewPage
     at NewPage
     form.with {
-        todoTile = "朝食"
+        todoTitle = "breakfast"
     }
     $('input', type: 'submit').click()
-//    
-//    at IndexPage
-//    assert todo == '朝食'
+    
+    at IndexPage
+    assert todo == 'breakfast'
   }
 }
