@@ -17,7 +17,7 @@ public class ToDoCreateServlet extends HttpServlet {
         throws ServletException, IOException {
         String todoTitle = request.getParameter("todoTitle");
         request.setAttribute("todoTitle", todoTitle);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request, response);
     }
 }
 

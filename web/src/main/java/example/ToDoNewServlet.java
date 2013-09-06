@@ -15,7 +15,7 @@ public class ToDoNewServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-        request.getRequestDispatcher("new.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/new.jsp").forward(request, response);
     }
 }
 
