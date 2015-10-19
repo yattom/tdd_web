@@ -1,6 +1,9 @@
 package example;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +18,16 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
+    	Todo todo = (Todo)request.getSession().getAttribute("example.todo");
+    	if(todo == null || todo.first() == null) {
+        	request.setAttribute("todos", new ArrayList<>());
+    	} else {
+    		String text = todo.first();
+    		if(text != null) {
+	    		List<String> todos = Arrays.asList(todo.first());
+	    		request.setAttribute("todos", todos);
+    		}
+    	}
         request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request, response);
     }
 }

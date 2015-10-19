@@ -12,4 +12,10 @@ public class Todo {
 		this.todo = string;
 	}
 
+	public void done(String string) {
+		if(string.equals(todo)) {
+			todo = null;
+		}
+	}
+
 }

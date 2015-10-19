@@ -6,10 +6,16 @@ class IndexPage extends Page {
 
   static content = {
 	  form { $("form") }
+	  todo(required: false) { $("li.todo-item") }
   }
   
   def 追加する(text) {
 	  form.text = text
 	  form.$("input", type: "submit").click()
+  }
+
+  def 完了する(text) {
+	  def item = todo.filter(text: startsWith(text))
+	  item.$('a', text: 'DONE').click()
   }
 }
