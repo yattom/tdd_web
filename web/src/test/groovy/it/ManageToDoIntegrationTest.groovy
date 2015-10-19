@@ -16,7 +16,7 @@ class ManageToDoIntegrationTest extends GebReportingTest {
     form.with {
         todoTitle = "breakfast"
     }
-    $('input', type: 'submit').click()
+    送信する()
     
     at IndexPage
     assert todo == 'breakfast'

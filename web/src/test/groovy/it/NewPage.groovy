@@ -7,4 +7,9 @@ class NewPage extends Page {
   static content = {
     form { $("form") }
   }
+
+  def "送信する"() {
+    $('input', type: 'submit').click()
+  }
+
 }
