@@ -1,4 +1,0 @@
-#cloud-config
-runcmd:
-  - echo 'Defaults:ec2-user !requiretty' > /etc/sudoers.d/888-vagrant-cloud-init-requiretty
-
