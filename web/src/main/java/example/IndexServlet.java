@@ -1,7 +1,6 @@
 package example;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -17,17 +16,18 @@ public class IndexServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		Todo todo = (Todo) request.getSession().getAttribute("example.todo");
-		if (todo == null || todo.first() == null) {
-			request.setAttribute("todos", new ArrayList<>());
-		} else {
-			String text = todo.first();
-			if (text != null) {
-				List<String> todos = todo.getAll();
-				request.setAttribute("todos", todos);
-			}
-		}
+		storeTodos(request, getTodo(request).getAll());
 		request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request,
 				response);
+	}
+
+	private Todo getTodo(HttpServletRequest request) {
+		Todo todo = (Todo) request.getSession().getAttribute("example.todo");
+		assert todo != null;
+		return todo;
+	}
+
+	private void storeTodos(HttpServletRequest request, List<String> todos) {
+		request.setAttribute("todos", todos);
 	}
 }

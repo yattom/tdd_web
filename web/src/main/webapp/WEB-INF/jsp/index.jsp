@@ -6,7 +6,7 @@
 <ul>
 <% for(String todo: (List<String>)request.getAttribute("todos")) {%>
 <li class="todo-item">
-<%= todo %>
+<span class="todo"><%= todo %></span>
 <a href="done?text=<%= URLEncoder.encode(todo) %>">DONE</a>
 </li>
 <% } %>

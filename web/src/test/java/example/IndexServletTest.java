@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.ObjectUtils.Null;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -49,19 +50,11 @@ public class IndexServletTest {
 		return expectedTodos;
 	}
 
-	@Test
-	public void testDoGet_1件もない場合() throws ServletException, IOException {
+	@Test(expected=AssertionError.class)
+	public void testDoGet_TodoがSession上にない場合() throws ServletException, IOException {
 		when(request.getSession().getAttribute("example.todo"))
 				.thenReturn(null);
 		sut.doGet(request, response);
-		verify(request).setAttribute("todos", stringList());
-	}
-
-	@Test
-	public void testDoGet_1件あってnullの場合() throws ServletException, IOException {
-		prepareTodo((String) null);
-		sut.doGet(request, response);
-		verify(request).setAttribute("todos", stringList());
 	}
 
 	private void prepareTodo(String... s) {

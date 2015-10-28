@@ -13,11 +13,11 @@ class TodoIntegrationTest extends GebReportingTest {
 	void "TODO"() {
 		to IndexPage
 		追加する("buy milk")
-		assert todo*.text() == ["buy milk DONE"]
+		assert todoText*.text() == ["buy milk"]
 		追加する("walk dog")
-		assert todo*.text() == ["buy milk DONE", "walk dog DONE"]
+		assert todoText*.text() == ["buy milk", "walk dog"]
 		完了する("buy milk")
 		assert todo.size() == 1
-		assert todo*.text() == ["walk dog DONE"]
+		assert todoText*.text() == ["walk dog"]
 	}
 }

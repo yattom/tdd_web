@@ -1,6 +1,7 @@
 package example;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertThat;
 
@@ -23,6 +24,12 @@ public class TodoTest {
 		todo.add("buy milk");
 		todo.add("walk dog");
 		assertThat(todo.first(), is("buy milk"));
+	}
+	
+	@Test(expected=NullPointerException.class)
+	public void TODOとしてnullを追加できない() {
+		Todo todo = new Todo();
+		todo.add(null);
 	}
 
 	@Test

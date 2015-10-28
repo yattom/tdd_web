@@ -12,10 +12,15 @@ public class Todo {
 	}
 
 	public String first() {
-		return todo.get(0);
+		String first = todo.get(0);
+		assert first != null;
+		return first;
 	}
 
 	public void add(String string) {
+		if(string == null) {
+			throw new NullPointerException();
+		}
 		this.todo.add(string);
 	}
 
