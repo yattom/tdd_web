@@ -1,21 +1,33 @@
 package example;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Todo {
 
-	private String todo;
+	private List<String> todo = new ArrayList<String>();
 
-	public String first() {
-		return todo;
+	public String getFirst() {
+		if (todo.size() == 0) {
+			return null;
+		}
+		return todo.get(0);
 	}
 
 	public void add(String string) {
-		this.todo = string;
+		this.todo.add(string);
 	}
 
 	public void done(String string) {
-		if(string.equals(todo)) {
-			todo = null;
+		for (int i = 0; i < todo.size(); i++) {
+			if (todo.get(i).equals(string)) {
+				todo.remove(i);
+				return;
+			}
 		}
 	}
 
+	public List<String> getAll() {
+		return new ArrayList<>(todo);
+	}
 }

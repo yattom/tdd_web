@@ -19,12 +19,12 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
     	Todo todo = (Todo)request.getSession().getAttribute("example.todo");
-    	if(todo == null || todo.first() == null) {
+    	if(todo == null || todo.getFirst() == null) {
         	request.setAttribute("todos", new ArrayList<>());
     	} else {
-    		String text = todo.first();
+    		String text = todo.getFirst();
     		if(text != null) {
-	    		List<String> todos = Arrays.asList(todo.first());
+	    		List<String> todos = todo.getAll();
 	    		request.setAttribute("todos", todos);
     		}
     	}

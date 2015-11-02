@@ -14,7 +14,9 @@ class TodoIntegrationTest extends GebReportingTest {
 		to IndexPage
 		追加する("buy milk")
 		assert todo*.text() == ["buy milk DONE"]
+		追加する("buy bread")
+		assert todo*.text() == ["buy milk DONE", "buy bread DONE"]
 		完了する("buy milk")
-		assert todo.size() == 0
+		assert todo.size() == 1
 	}
 }
