@@ -29,7 +29,7 @@ public class Todo {
 	}
 
 	public boolean left() {
-		return todo.isEmpty();
+		return !todo.isEmpty();
 	}
 
 	public List<String> getAll() {

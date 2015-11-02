@@ -1,5 +1,6 @@
 package example;
 
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -13,7 +14,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.ObjectUtils.Null;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,11 +50,11 @@ public class IndexServletTest {
 		return expectedTodos;
 	}
 
-	@Test(expected=AssertionError.class)
-	public void testDoGet_TodoがSession上にない場合() throws ServletException, IOException {
+	@Test
+	public void testGetTodo_Session上にない場合() {
 		when(request.getSession().getAttribute("example.todo"))
 				.thenReturn(null);
-		sut.doGet(request, response);
+		assertNotNull(sut.getTodo(request));
 	}
 
 	private void prepareTodo(String... s) {

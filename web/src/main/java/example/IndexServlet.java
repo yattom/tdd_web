@@ -21,9 +21,12 @@ public class IndexServlet extends HttpServlet {
 				response);
 	}
 
-	private Todo getTodo(HttpServletRequest request) {
+	Todo getTodo(HttpServletRequest request) {
 		Todo todo = (Todo) request.getSession().getAttribute("example.todo");
-		assert todo != null;
+		if(todo == null) {
+			todo = new Todo();
+			request.getSession().setAttribute("example.todo", todo);
+		}
 		return todo;
 	}
 
