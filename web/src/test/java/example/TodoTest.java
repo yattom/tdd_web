@@ -47,9 +47,9 @@ public class TodoTest {
 		todo.add(BUY_BREAD);
 		assertThat(todo.getAll(), contains(BUY_MILK, BUY_BREAD));
 	}
-	
+
 	@Test
-	public void TODOを外部から変更できる() {
+	public void TODOを外部から変更できない() {
 		todo.add(BUY_MILK);
 		todo.getAll().set(0, BUY_BREAD);
 		assertThat(todo.getFirst(), is(BUY_MILK));
