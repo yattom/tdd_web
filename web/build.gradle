@@ -85,3 +85,6 @@ task wrapper(type: Wrapper) {
     gradleVersion = '1.6'
 }
 
+task home << {
+println gradle.gradleHomeDir
+}
