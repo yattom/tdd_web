@@ -7,6 +7,7 @@ class IndexPage extends Page {
   static content = {
 	  form { $("form") }
 	  todo(required: false) { $("li.todo-item") }
+      errors { $("span.error") }
   }
   
   def 追加する(text) {

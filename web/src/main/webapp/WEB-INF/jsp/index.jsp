@@ -3,6 +3,7 @@
 
 <html>
 <body>TODO INDEX
+<span class="error"><%= request.getAttribute("errors") %></span>
 <ul>
 <% for(String todo: (List<String>)request.getAttribute("todos")) {%>
 <li class="todo-item">

@@ -22,10 +22,11 @@ public class IndexServlet extends HttpServlet {
     	if(todo == null || todo.getFirst() == null) {
         	request.setAttribute("todos", new ArrayList<>());
     	} else {
-    		String text = todo.getFirst();
+    		String text = todo.getFirst().getLabel();
     		if(text != null) {
-	    		List<String> todos = todo.getAll();
-	    		request.setAttribute("todos", todos);
+				throw new RuntimeException();
+//	    		List<String> todos = todo.getAll();
+//	    		request.setAttribute("todos", todos);
     		}
     	}
         request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request, response);

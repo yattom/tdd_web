@@ -23,7 +23,6 @@ class TodoIntegrationTest extends GebReportingTest {
 		assert todo.size() == 0
 	}
 
-	@Ignore
 	@Test
 	void "TODOのバリデーション"() {
 		to IndexPage

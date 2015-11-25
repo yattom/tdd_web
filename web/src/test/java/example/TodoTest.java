@@ -12,8 +12,8 @@ import org.junit.Test;
 
 public class TodoTest {
 
-	private static final String BUY_BREAD = "buy bread";
-	private static final String BUY_MILK = "buy milk";
+	private static final Todo.TodoEntry BUY_BREAD = new Todo.TodoEntry("buy bread");
+	private static final Todo.TodoEntry BUY_MILK = new Todo.TodoEntry("buy milk");
 	private Todo todo;
 
 	@Before
@@ -30,7 +30,7 @@ public class TodoTest {
 	@Test
 	public void TODOを1件完了にできる() {
 		todo.add(BUY_MILK);
-		todo.done(BUY_MILK);
+		todo.done(BUY_MILK.getLabel());
 		assertThat(todo.getFirst(), is(nullValue()));
 	}
 
@@ -53,5 +53,10 @@ public class TodoTest {
 		todo.add(BUY_MILK);
 		todo.getAll().set(0, BUY_BREAD);
 		assertThat(todo.getFirst(), is(BUY_MILK));
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void TODOは空では作成できない_スペースだけの場合() {
+		new Todo.TodoEntry("   ");
 	}
 }

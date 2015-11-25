@@ -1,6 +1,7 @@
 package example;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +21,17 @@ public class CreateServlet extends HttpServlet {
 			todo = new Todo();
 			request.getSession().setAttribute("example.todo", todo);
 		}
-		todo.add(request.getParameter("text"));
+		String text = request.getParameter("text");
+		try {
+			todo.add(new Todo.TodoEntry(text));
+		} catch(IllegalArgumentException e) {
+			request.setAttribute("errors", e.getMessage());
+			throw new RuntimeException();
+//			List<String> todos = todo.getAll();
+//			request.setAttribute("todos", todos);
+//			request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request, response);
+//			return;
+		}
 		response.sendRedirect("index");
 	}
 }
